@@ -1,0 +1,13 @@
+.navigator{
+   background-color: azure;
+   padding: 30px 30px;
+   height: 10vh;
+
+   ol{
+       display: flex;
+       list-style: none;
+       li{
+           margin: 0 10px;
+       }
+   }
+}

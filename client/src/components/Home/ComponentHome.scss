@@ -1,0 +1,7 @@
+.Home-cBodyTag{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 30px;
+}
