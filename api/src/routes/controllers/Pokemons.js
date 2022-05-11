@@ -102,8 +102,11 @@ const getPokemonByName = async (pName) => {
                 ]
             }
         });
+        if(dataDB.length > 0){
+            return dataDB;
+        }
         const dataApi = await ApiDataByIdOrName(pName.toLowerCase());
-        return dataDB.concat(dataApi);
+        return  (dataApi.pok_id)? [dataApi] : null;
     } catch (error) {return error.message}
 }
 

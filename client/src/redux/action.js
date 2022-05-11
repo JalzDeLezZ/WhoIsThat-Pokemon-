@@ -7,6 +7,7 @@ export const FILTER_POKEMONS = 'FILTER_POKEMONS';
 export const ORDER_POKEMONS = 'ORDER_POKEMONS';  
 export const GET_POKEMONS_BY_NAME = 'GET_POKEMONS_BY_NAME';  
 export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';  
+export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';  
 
 const URL = `http://127.0.0.1:3001`;
 
@@ -23,7 +24,11 @@ export const getAllPokemons = () => {
         }
     }
 }
-
+export const reloadPokemons = () => {
+    return {
+        type: RELOAD_POKEMONS,
+    }
+}
 export const getAllTypes = () => {
     return async (dispatch) => {
         try {

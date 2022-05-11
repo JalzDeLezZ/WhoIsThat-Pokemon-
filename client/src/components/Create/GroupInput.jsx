@@ -41,7 +41,7 @@ const GroupInput = (props) => {
           onBlur={mValitation}
         />
         {
-          pOValidation[pClassName] === null ? null
+          pOValidation[pClassName] === '' ? null
           :pOValidation[pClassName] === true ? <span>✅</span>
           :<span>❌</span>
         }

@@ -5,7 +5,8 @@ import {
     FILTER_POKEMONS,
     ORDER_POKEMONS,
     GET_POKEMONS_BY_NAME,
-    GET_POKEMON_BY_ID
+    GET_POKEMON_BY_ID,
+    RELOAD_POKEMONS
 } from "./action";
 
 const initialState = {
@@ -185,6 +186,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 rdcr_oPkm: payload,
+            };
+
+        case RELOAD_POKEMONS:
+            return {
+                ...state,
+                rdcr_aCustomPokemons: rdcr_aAllPokemons,
             };
         default:
             return state;

@@ -58,7 +58,7 @@ const ContentCards = () => {
             vPieceOfCards.map((pI,i) => {
               return (
                 <Tags
-                  key={pI.pok_id+i} 
+                  key={`${pI.pok_id}`+i} 
                   pId= {pI.pok_id}
                   name = {pI.pok_name}
                   image = { pI.pok_image }

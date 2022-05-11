@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTypes } from '../../redux/action';
 import GroupInput from './GroupInput';
+import { SelectGroup } from './SelectGroup';
 
 const Form = () => {
     const xDispatch = useDispatch();
@@ -20,7 +21,7 @@ const Form = () => {
         pok_speed: '',
         pok_height: '',
         pok_weight: '',
-        typ_name: '',
+        typ_name: [],
     }
 
     const [crntOValues, setOvalues] = useState(oInialValues);
@@ -29,10 +30,14 @@ const Form = () => {
 
     const mSubmit = (e) =>{
         e.preventDefault();
-        console.log(crntOValues);
         // xDispatch(createPokemon(crntOValues));
         setOvalues(oInialValues);
     }
+
+    const mDeleteTypes = (pInn) => {
+            const newTypes = crntOValues.typ_name.filter(pI => pI.typ_id !== pInn);
+            setOvalues({...crntOValues, typ_name: newTypes});
+        }
 // --------------↑↑↑BLACK BOX↑↑↑-----------------
 // ----------------------------------------------
 // ---------------↓↓↓RENDER↓↓↓-------------------
@@ -51,6 +56,28 @@ const Form = () => {
         pOSetOValidation ={setOValidation}
         pErrorLegend = "Only letters (aA-zZ) and numbers (0-9) are accepted"
       />
+
+        <SelectGroup
+            pName = 'typ_name'
+            pLabel = 'Type of Pokemon'
+            pAOptions = {rdcr_aTypes}
+            pAState = {crntOValues}
+            pASetState = {setOvalues}
+        />
+
+        <ol>
+            {
+                crntOValues.typ_name.map((pI,index) => {
+                    return( 
+                        <li key={index}>
+                            {pI.typ_name} 
+                            <button 
+                                type='button' 
+                                onClick={() => mDeleteTypes(pI.typ_id)}>X</button>
+                        </li>)
+                })
+            }
+        </ol>
 
       <button type='submit'>Create</button>
     </form>
