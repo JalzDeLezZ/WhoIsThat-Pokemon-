@@ -7,4 +7,11 @@ router.get('/', function(req, res) {
 
 router.use('/pokemons', require('./path/pokemons.js'));
 router.use('/types', require('./path/types.js'));
+
+// ====================================================
+
+router.use('/images', require('./path/image.js'))
+
+// ====================================================
+
 module.exports = router;

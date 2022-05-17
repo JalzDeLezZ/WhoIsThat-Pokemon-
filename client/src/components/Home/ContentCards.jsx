@@ -29,16 +29,16 @@ const ContentCards = () => {
   const aNumbersPerPage = [];
   const vAllData = rdcr_aCustomPokemons.length;
   const pageCount = Math.ceil(vAllData / vCardsPerPage)
-  for (let i = 1; i < pageCount; i++) {
+  for (let i = 1; i <= pageCount; i++) {
     aNumbersPerPage.push(i);    
   }
 
   
   const mPrevious = () => {
-    crntPage > 1 ? setPage(crntPage - 1) : setPage(pageCount -1);
+    crntPage > 1 ? setPage(crntPage - 1) : setPage(pageCount);
   }
   const mChangeNext = () => {
-    crntPage < pageCount -1 ? setPage(crntPage + 1) : setPage(1);
+    crntPage < pageCount ? setPage(crntPage + 1) : setPage(1);
   }
 
 

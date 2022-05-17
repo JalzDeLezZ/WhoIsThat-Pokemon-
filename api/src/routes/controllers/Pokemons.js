@@ -23,7 +23,7 @@ const getAllPokemonsByApy = async () => {
         //     aAllPokemons = [...aAllPokemons, ...data.results];
         //     url = data.next;
         // } 
-        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=6`);
+        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=2`);
 
         const arrayOfPromises = data.results.map(async (pI) => {
             const {data} = await axios.get(pI.url);
@@ -82,6 +82,7 @@ const getPokemonById = async (pIdentificator) => {
             const oPokemon = await Pokemon.findByPk(pIdentificator,{
                 include: { model: Type, through: {attributes: []} }}
             );
+            if (oPokemon === null) { return {errorMessage: "No se Encontró ningún Pokemon"} } 
             return oPokemon;
         }
         const dataApi = await ApiDataByIdOrName(pIdentificator);
@@ -126,23 +127,41 @@ const createPokemon = async (req, res) => {
                 ,aIdTypes
             } = req.body;
             
-        if (!pok_name) {return res.send("Pokemon name is required");}
+        if (!pok_name) {return res.json({errorMessage: "Pokemon name is required"});}
 
         
-        const oPokemon = await Pokemon.create({
-            pok_name,
-            pok_life,
-            pok_attack,
-            pok_defense,
-            pok_speed,
-            pok_height,
-            pok_weight
+        // const oPokemon = await Pokemon.create({
+        const [oPokemon, bCreated] = await Pokemon.findOrCreate({
+            where: {pok_name: pok_name},
+            defaults:{
+                pok_name,
+                pok_life,
+                pok_attack,
+                pok_defense,
+                pok_speed,
+                pok_height,
+                pok_weight
+            }
         });
+        if (bCreated) {
+            
+            // let typesDb = await Type.findAll({
+            //     where: {name: types}
+            // })
+            // res.sen(typesDb)
+            
+            await oPokemon.addTypes(aIdTypes)
 
-        const insertMiddleTable = await oPokemon.addTypes(aIdTypes)
+            const oCreated = await Pokemon.findOne({
+                where: {pok_name: pok_name},
+                include: { model: Type, through: {attributes: []} },
+            })
 
-        return res.json(insertMiddleTable);
-
+            // return res.json(oCreated.Types);
+            return res.json(oCreated);
+        }
+        return res.send({errorMessage: "This Pokemons is already created"})
+        
     } catch (error) { return error.message }
 }
 

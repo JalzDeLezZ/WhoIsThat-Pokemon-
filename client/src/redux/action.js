@@ -93,3 +93,34 @@ export const getPokemonById = (pId) => {
         }
     }
 }
+
+export const createPokemon = (pObjData) => {
+    return async () => {
+        try {
+            const response = await axios.post(`${URL}/pokemons`, pObjData);
+
+            return response
+        } catch (e) { console.log(e.message) }
+    }
+}
+
+export const updateImage = (pOForm) => {
+    console.log(pOForm)
+    return async () => {
+        try {
+            const {data} = await axios.post(`${URL}/images/upload`, pOForm);
+            console.log(data,">>>>>>>>>>>>>>>>><<")
+            return data
+        } catch (e) { console.log(e.message) }
+    }
+}
+
+export const getImage = (pId) => {
+    return async () => {
+        try {
+            const {data} = await axios.get(`${URL}/images/${pId}`);
+            console.log(data)
+            return data
+        } catch (e) { console.log(e.message) }
+    }
+}

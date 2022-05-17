@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components';
 
 const GroupInput = (props) => {
-  const {pType,pLabel,pPlaceHolder,pClassName,pOValues,pOSetOvalues, pRegExp,pErrorLegend, pOValidation, pOSetOValidation} = props;
+  const {pType,pLabel,pPlaceHolder,pClassName,pOValues,pOSetOvalues, pRegExp,pErrorLegend, pOValidation, pOSetOValidation, pMax, pMin} = props;
 
   const mOnChange = (event) => {
     const {name ,value} = event.target;
@@ -39,6 +39,8 @@ const GroupInput = (props) => {
           onChange={mOnChange}
           onKeyUp={mValitation}
           onBlur={mValitation}
+          min={pMin}
+          max={pMax}
         />
         {
           pOValidation[pClassName] === '' ? null
