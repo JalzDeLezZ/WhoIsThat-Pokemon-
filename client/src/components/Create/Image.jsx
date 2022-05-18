@@ -8,34 +8,23 @@ async function DisplayImage(oImage) {
     return data;
 }
 
-const Image = () => {
+const Image = ({ pSetState}) => {
+
     const xDispatch = useDispatch();
     const InputValue = useRef();
 
     const [dirImg, setdirImg] = useState('');
-    const [image, setImage] = useState(null);
 
     const mFileSelected = async (e) => {
 
         const oImg = e.target.files[0];
-        setImage(oImg);
+        pSetState(oImg);
         const res = await DisplayImage({myFile: oImg});
         setdirImg(res.routeImage);
         InputValue.current.value = '';
 
     }
 
-    const mUpload = async () => {
-        
-        if (image){
-            const xFormData = new FormData();
-            xFormData.append('myFile', image);
-            const rst = await xDispatch(uploadImage(xFormData));
-            console.log(rst);
-        } else {
-            alert('Please select an image');
-        }
-    }
 
   return (
     <div style={{margin: "30px"}}>
@@ -44,13 +33,7 @@ const Image = () => {
             accept= "image/*"
             onChange={mFileSelected}
             type="file"/>
-
-        <button
-            type='button' 
-            onClick={mUpload}
-        >Upload</button>
-
-        <br/>
+ 
         <img src={`http://localhost:3001/${dirImg}`} alt=""/>
     </div>
   )
@@ -62,7 +45,25 @@ export default Image
 
 
 
+/*  THIS CODE IS SERVED = upload image
 
+
+    const mUpload = async () => {
+        
+        if (pState){
+            const xFormData = new FormData();
+            xFormData.append('myFile', pState);
+            pSetUrlImg = await xDispatch(uploadImage(xFormData));
+        } else {
+            alert('Please select an image');
+        }
+    }
+
+    <button
+        type='button' 
+        onClick={mUpload}
+    >Upload</button>
+*/
 
 
 

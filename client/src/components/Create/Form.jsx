@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTypes, createPokemon } from '../../redux/action';
+import { getAllTypes, createPokemon, uploadImage } from '../../redux/action';
 import GroupInput from './GroupInput';
 import { SelectGroup } from './SelectGroup';
 import Image from './Image';
@@ -24,18 +24,35 @@ const Form = () => {
         pok_weight: '',
         aIdTypes: [],
     }
+    const [oImage, setOImage] = useState(null);
 
     const [crntOValues, setOvalues] = useState(oInialValues);
       
     const [oValidation, setOValidation] = useState(oInialValues);
 
+    // ================= submit form =================
+    const mUpload = async () => {
+        
+        if (oImage){
+            const xFormData = new FormData();
+            xFormData.append('myFile', oImage);
+            return await xDispatch(uploadImage(xFormData)); 
+        } else {
+            alert('Please select an image');
+        }
+    }
     
-    const mSubmit = (e) =>{
-        const aTemp = crntOValues;
-        aTemp.aIdTypes = aTemp.aIdTypes.map(pI => pI.typ_id)
+    const mSubmit = async (e) =>{
         e.preventDefault();
-        console.log(aTemp);
-        xDispatch(createPokemon(crntOValues));
+
+        const vUrl = await mUpload();
+
+        let oTemp = crntOValues;
+        oTemp.aIdTypes = oTemp.aIdTypes.map(pI => pI.typ_id)
+        oTemp = { ...oTemp, pok_image: vUrl };
+        console.log(oTemp, "OOOOOOOOOOO");
+        const rst = await xDispatch(createPokemon(oTemp));
+        console.log(rst,"RESOULT TO CREATE");
         setOvalues(oInialValues);
     }
 
@@ -183,7 +200,11 @@ const Form = () => {
         </ol>
 
 
-      <Image/>
+      <Image 
+        pState = {oImage}
+        pSetState = {setOImage}
+ 
+      />
 
       <button type='submit'>Create</button>
 

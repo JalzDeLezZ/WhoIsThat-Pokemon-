@@ -116,15 +116,15 @@ export const uploadImage = (pOForm) => {
     }
 }
 
-export const getImage = (pId) => {
-    return async () => {
-        try {
-            const {data} = await axios.get(`${URL}/images/${pId}`);
-            console.log(data)
-            return data
-        } catch (e) { console.log(e.message) }
-    }
-}
+// export const getImage = (pId) => {
+//     return async () => {
+//         try {
+//             const {data} = await axios.get(`${URL}/images/${pId}`);
+//             console.log(data)
+//             return data
+//         } catch (e) { console.log(e.message) }
+//     }
+// }
 
 // ====================== IMAGES ===================
 // ====================== IMAGES ===================

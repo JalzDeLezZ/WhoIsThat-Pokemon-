@@ -125,6 +125,7 @@ const createPokemon = async (req, res) => {
                 ,pok_height
                 ,pok_weight
                 ,aIdTypes
+                ,pok_image
             } = req.body;
             
         if (!pok_name) {return res.json({errorMessage: "Pokemon name is required"});}
@@ -140,7 +141,8 @@ const createPokemon = async (req, res) => {
                 pok_defense,
                 pok_speed,
                 pok_height,
-                pok_weight
+                pok_weight,
+                pok_image
             }
         });
         if (bCreated) {
