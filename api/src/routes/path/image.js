@@ -1,24 +1,32 @@
 require("dotenv").config();
+const uuid = require('uuid').v4;
 const multer = require('multer');
 const router = require('express').Router();
 const { s3Uploadv2 } = require("../controllers/s3Services.js");
+const path = require('path');
 
-router.get('/', async (req, res) => {
-    res.send("I'm in the image route");
-})
-router.get('/:identity', async (req, res) => {
-    const { identity } = req.params;
-    res.json( {identity});
-})
+// DELETE DISK STORAGE
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink);
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// router.get('/', async (req, res) => {res.send("I'm in the image route");})
+// router.get('/:identity', async (req, res) => {const { identity } = req.params;res.json( {identity});})
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-const storage = multer.memoryStorage();
+// Storage in the local server
 
-//MIDLEWARE FOR MULTER
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../../public/temp-images'),
+    filename: (req, file, cb) => {
+        const { originalname } = file;
+        cb(null, `${uuid()}-${originalname}`);
+    }
+});
+
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype.split('/')[0] === 'image') {
+    if (file.mimetype.split("/")[0] === 'image'){ //["image", "jpeg"]
         cb(null, true);
     }
     else {
@@ -26,43 +34,69 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
-const upload = multer({
+const fileUpload = multer({
     storage,
     fileFilter,
     limits: {
         fileSize: 1000000,
         files: 1
     }
-})
+}).single('myFile');
+
+router.post(
+    '/display',
+    fileUpload,
+    async (req, res) => {
+        try {
+            const localUrl = req.file.filename;
+            res.json({routeImage: localUrl});
+        } catch (error) {res.status(500).json({ error: error.message });}
+    }
+);
+
+
+const upload = multer({
+    storage: multer.memoryStorage(),
+    fileFilter,
+    limits: {
+        fileSize: 1000000,
+        files: 1
+    }
+}).single('myFile');
 
 router.post(
     '/upload',
-    upload.single('myFile'),
+    upload,
     async (req, res) => {
         try {
-            const file = req.file;
-            console.log(file);
-            const result = await s3Uploadv2(file);
-            res.json(result);
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
+            const file = req.file
+            const rst = await s3Uploadv2(file);
+            console.log(rst)
+
+            // DELETE ALL FILES IN THE TEMP FOLDER
+            const files = await fs.readdirSync(path.join(__dirname, '../../public/temp-images'));
+
+            for (const file of files) {
+                await unlinkFile(path.join(__dirname, '../../public/temp-images', file));
+            }
+            
+            res.json(rst.Location);
+        } catch (error) {res.status(500).json({ error: error.message });}
     }
 )
 
-// ========== ERROR ==========
-router.use((err, req, res, next) => {
-    if (err instanceof multer.MulterError) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
-            return res.status(400).json( { message: "File size is too large"});
-        }
-        else if (err.code === 'LIMIT_FILE_COUNT') {
-            return res.status(400).json( { message: "Too many files, please upload only 2"});
-        }
-        else if (err.code === 'LIMIT_UNEXPECTED_FILE') {
-            return res.status(400).json( { message: "Unexpected file, only images are allowed"});
-        }
-    }
-})
+
+
 
 module.exports = router;
+
+
+/* 
+
+    const localUrl = req.file.filename;
+    const { identity } = req.body;
+    const { bucket } = process.env;
+    const { key } = await s3Uploadv2(localUrl, bucket);
+    res.json({routeImage: key});
+            
+*/

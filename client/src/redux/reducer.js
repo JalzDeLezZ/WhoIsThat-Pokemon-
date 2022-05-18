@@ -6,7 +6,8 @@ import {
     ORDER_POKEMONS,
     GET_POKEMONS_BY_NAME,
     GET_POKEMON_BY_ID,
-    RELOAD_POKEMONS
+    RELOAD_POKEMONS,
+    DISPLAY_IMAGE
 } from "./action";
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
     rdcr_aCustomPokemons: [],
     rdcr_aTypes: [],
     rdcr_bLoading: true,
-    rdcr_oPkm : {}
+    rdcr_oPkm : {},
+    rdcr_aImages: [],
 };
 let aTemp = [];
 
@@ -192,6 +194,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 rdcr_aCustomPokemons: rdcr_aAllPokemons,
+            };
+        case DISPLAY_IMAGE:
+            return {
+                ...state,
+                rdcr_aImages: payload,
             };
         default:
             return state;

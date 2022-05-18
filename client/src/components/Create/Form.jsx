@@ -182,9 +182,11 @@ const Form = () => {
             }
         </ol>
 
-      <button type='submit'>Create</button>
 
       <Image/>
+
+      <button type='submit'>Create</button>
+
     </form>
   )
 }

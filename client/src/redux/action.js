@@ -8,6 +8,7 @@ export const ORDER_POKEMONS = 'ORDER_POKEMONS';
 export const GET_POKEMONS_BY_NAME = 'GET_POKEMONS_BY_NAME';  
 export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';  
 export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';  
+export const DISPLAY_IMAGE = 'DISPLAY_IMAGE';  
 
 const URL = `http://127.0.0.1:3001`;
 
@@ -102,14 +103,14 @@ export const createPokemon = (pObjData) => {
             return response
         } catch (e) { console.log(e.message) }
     }
-}
+};
+// ====================== IMAGES ===================
 
-export const updateImage = (pOForm) => {
-    console.log(pOForm)
+export const uploadImage = (pOForm) => {
     return async () => {
         try {
-            const {data} = await axios.post(`${URL}/images/upload`, pOForm);
-            console.log(data,">>>>>>>>>>>>>>>>><<")
+            const {data} = await axios.post(
+                `${URL}/images/upload`, pOForm, { headers: {'Content-Type': 'multipart/form-data'} });
             return data
         } catch (e) { console.log(e.message) }
     }
@@ -124,3 +125,22 @@ export const getImage = (pId) => {
         } catch (e) { console.log(e.message) }
     }
 }
+
+// ====================== IMAGES ===================
+// ====================== IMAGES ===================
+// ====================== IMAGES ===================
+
+/* export const displayImage = (pImage) => {
+    async function fSecondary(dispatch) {
+        try {
+            const {data} = await axios.post(`http://localhost:3001/images/display`, pImage, { headers: {'Content-Type': 'multipart/form-data'}});
+            console.log(data, "ACTION - DISPLAY IMAGE")
+            dispatch({
+                type: DISPLAY_IMAGE,
+                payload: ["ASDF"],
+            });
+
+        } catch (error) { console.log(error.message); }
+    }
+    return fSecondary
+} */
