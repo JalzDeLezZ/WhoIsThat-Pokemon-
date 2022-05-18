@@ -31,7 +31,7 @@ const Form = () => {
     const [oValidation, setOValidation] = useState(oInialValues);
 
     // ================= submit form =================
-    const mUpload = async () => {
+    const mUpload = async () => { // verify if image is selected
         
         if (oImage){
             const xFormData = new FormData();
