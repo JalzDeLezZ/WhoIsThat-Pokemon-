@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  ##############################
+  # Backend Container
+  ##############################
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=123456789
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pokemon
+    ports:
+      - "5432:5432"
+
+  api:
+    restart: always
+    image: api-videog  
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: 123456789
+      DB_HOST: db
+      
+      AWS_BUCKET_NAME: aws-s3-jalz
+      AWS_REGION: sa-east-1
+      AWS_ACCESS_KEY_ID: AKIASH5HOC53PIQH47OB
+      AWS_SECRET_ACCESS_KEY: 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
+
+      restart: always
+    depends_on:
+      - db 
+    ports:
+      - "4001:4001"
+
+  ##############################
+  # UI Container
+  ##############################
+  front:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: client-docker 
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./client/nginx/certbot/conf:/etc/letsencrypt
+      - ./client/nginx/certbot/www:/var/www/certbot
+    tty: true  

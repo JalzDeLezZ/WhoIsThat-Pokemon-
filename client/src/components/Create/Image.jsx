@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { uploadImage } from '../../redux/action';
 
 async function DisplayImage(oImage) {
-    const {data} = await axios.post(`http://localhost:3001/images/display`, oImage, { headers: {'Content-Type': 'multipart/form-data'}});
+    const {data} = await axios.post(`http://18.231.187.196:4001/images/display`, oImage, { headers: {'Content-Type': 'multipart/form-data'}});
     return data;
 }
 
@@ -34,7 +34,7 @@ const Image = ({ pSetState}) => {
             onChange={mFileSelected}
             type="file"/>
         <figure>
-            <img src={`http://localhost:3001/${dirImg}`} alt=""/>
+            <img src={`http://18.231.187.196:4001/${dirImg}`} alt=""/>
         </figure>
     </div>
   )

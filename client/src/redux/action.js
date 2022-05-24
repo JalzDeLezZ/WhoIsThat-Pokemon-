@@ -10,7 +10,8 @@ export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
 export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';  
 export const DISPLAY_IMAGE = 'DISPLAY_IMAGE';  
 
-const URL = `http://127.0.0.1:3001`;
+// const URL = `http://127.0.0.1:4001`;
+const URL = `http://18.231.187.196:4001`;
 
 export const getAllPokemons = () => {
     return async (dispatch) => {
