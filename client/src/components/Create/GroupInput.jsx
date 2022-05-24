@@ -29,7 +29,7 @@ const GroupInput = (props) => {
     }
   }
   return (
-    <div>
+    <MyDiv>
         <label htmlFor="">{pLabel}</label>
         <input 
           type={pType}
@@ -50,7 +50,7 @@ const GroupInput = (props) => {
         <ErrorLegend 
             pIsValid={pOValidation[pClassName]}
         >{pErrorLegend}</ErrorLegend>
-    </div>
+    </MyDiv>
   )
 }
 
@@ -68,4 +68,14 @@ const ErrorLegend = styled.p`
     ${props => props.pIsValid === false && css`
         display: block;
     `}
+`
+
+const MyDiv = styled.div`
+  position: relative;
+  span{
+    position: absolute;
+    right: 0px;
+    top: 33px;
+    margin-right: 32px;
+  }
 `

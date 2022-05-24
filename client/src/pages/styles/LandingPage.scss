@@ -1,0 +1,27 @@
+.landingPAge{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../../assets/img/walpaper.jpg");
+    background-size: cover;/* contain */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    .btn_primary{
+        background: url(https://i.ibb.co/dWJH8MT/pkmlogo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 300px;
+        height: 100px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            transform: scale(1.1);
+        }
+        right: 0px;
+        position: absolute;
+        margin: 10px 40px;
+    }
+}

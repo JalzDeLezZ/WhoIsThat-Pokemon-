@@ -27,14 +27,15 @@ const Image = ({ pSetState}) => {
 
 
   return (
-    <div style={{margin: "30px"}}>
+    <div className='component-image'>
         <input //multiple
             ref={InputValue}
             accept= "image/*"
             onChange={mFileSelected}
             type="file"/>
- 
-        <img src={`http://localhost:3001/${dirImg}`} alt=""/>
+        <figure>
+            <img src={`http://localhost:3001/${dirImg}`} alt=""/>
+        </figure>
     </div>
   )
 }

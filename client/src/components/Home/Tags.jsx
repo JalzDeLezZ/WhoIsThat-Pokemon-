@@ -12,10 +12,10 @@ const Tags = (props) => {
 
   return (
     <MyArticle>
+      <h3>{name}</h3>
       <figure>
         <img src={image} alt="dog" />
       </figure>
-      <h3>{name}</h3>
       <ol>
         {
           pTypes?.map((pI, i) => {
@@ -23,7 +23,10 @@ const Tags = (props) => {
           })
         }
       </ol>
-      <button onClick={mShowDetails}>Details</button>
+      <button 
+        className='btn-show-details'
+        onClick={mShowDetails}
+      >Details</button>
     </MyArticle>
   )
 }
@@ -33,19 +36,30 @@ export default Tags
 const MyArticle = styled.article`
   width: 100%;
   height: 30vh;
-  background-color: #413737;
   border-radius: 10px;
+  border: 2px solid white;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(3px);
+  h3{
+    font-size: 1.5rem;
+  }
   figure {
-    width: 70%;
-    height: 60%;
-    border: 1px solid white;
+    width: 160px;
+    height: 160px;
+    /* display: grid;
+    place-items: center; */
+    overflow: hidden;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 9px 0;
     img{
-      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 3px 19px rgba(0, 0, 0, 0.7));
     }
   }
   ol{
@@ -55,6 +69,20 @@ const MyArticle = styled.article`
     justify-content: center;
     li{
       margin: 3px 6px;
+      border: 1px solid white;
+      padding: 3px 9px;
+      border-radius: 7px;
+      font-weight: bolder;
     }
+  }
+  .btn-show-details{
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+    font-size: 1.4rem;
+    border-bottom: 2px solid white;
   }
 `

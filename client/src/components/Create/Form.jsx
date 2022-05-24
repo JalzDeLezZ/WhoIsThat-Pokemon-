@@ -4,7 +4,7 @@ import { getAllTypes, createPokemon, uploadImage } from '../../redux/action';
 import GroupInput from './GroupInput';
 import { SelectGroup } from './SelectGroup';
 import Image from './Image';
-
+import './Form.scss';
 const Form = () => {
     const xDispatch = useDispatch();
 
@@ -64,149 +64,156 @@ const Form = () => {
 // ----------------------------------------------
 // ---------------↓↓↓RENDER↓↓↓-------------------
   return (
-    <form onSubmit={mSubmit}>
-        <GroupInput 
-            pType = "text"
-            pLabel= "Pokemon Name"
-            pPlaceHolder = "Enter Pokemon Name"
-            pClassName= "pok_name"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
+    <form 
+        className='component-form'
+        onSubmit={mSubmit}>
+        <section className='cForm-content'>
+            <div className='fSection-One'>
 
-            pRegExp = {/^[a-zA-Z0-9 ]{3,}$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pErrorLegend = "Only letters (aA-zZ) and numbers (0-9) are accepted"
-        />
+                <GroupInput 
+                    pType = "text"
+                    pLabel= "Pokemon Name"
+                    pPlaceHolder = "Enter Pokemon Name"
+                    pClassName= "pok_name"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
 
-        <GroupInput 
-            pType = "number"
-            pLabel= "Life Points"
-            pPlaceHolder = "Enter Life Points 1 - 100"
-            pClassName= "pok_life"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
+                    pRegExp = {/^[a-zA-Z0-9 ]{3,}$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pErrorLegend = "Only letters (aA-zZ) and numbers (0-9) are accepted"
+                />
 
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Life Points"
+                    pPlaceHolder = "Enter Life Points 1 - 100"
+                    pClassName= "pok_life"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
 
-        <GroupInput 
-            pType = "number"
-            pLabel= "Attack Points"
-            pPlaceHolder = "Enter Attack Points 1 - 100"
-            pClassName= "pok_attack"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
 
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Attack Points"
+                    pPlaceHolder = "Enter Attack Points 1 - 100"
+                    pClassName= "pok_attack"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
 
-        <GroupInput 
-            pType = "number"
-            pLabel= "Speed Points"
-            pPlaceHolder = "Enter Speed Points 1 - 100"
-            pClassName= "pok_speed"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
 
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Speed Points"
+                    pPlaceHolder = "Enter Speed Points 1 - 100"
+                    pClassName= "pok_speed"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
+
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
+                
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Height Points"
+                    pPlaceHolder = "Enter Height Points 1 - 100"
+                    pClassName= "pok_height"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
+
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
+
+
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Weight Points"
+                    pPlaceHolder = "Enter Weight Points 1 - 100"
+                    pClassName= "pok_weight"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
+
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
+
+
+                <GroupInput 
+                    pType = "number"
+                    pLabel= "Defense Points"
+                    pPlaceHolder = "Enter Defense Points 1 - 100"
+                    pClassName= "pok_defense"
+                    pOValues= {crntOValues}
+                    pOSetOvalues= {setOvalues}
+
+                    pErrorLegend = "Only numbers (1-100) are accepted"
+                    pRegExp = {/^([1-9][0-9]?|100)$/m}
+                    pOValidation ={oValidation}
+                    pOSetOValidation ={setOValidation}
+                    pMax = "100"
+                    pMin = "1"
+                />
+                
+                <SelectGroup
+                    pName = 'aIdTypes'
+                    pLabel = 'Type of Pokemon'
+                    pAOptions = {rdcr_aTypes}
+                    pAState = {crntOValues}
+                    pASetState = {setOvalues}
+                />
+
+                <ol className='sOne-list_types'>
+                    {
+                        crntOValues.aIdTypes.map((pI,index) => {
+                            return( 
+                                <li key={index}>
+                                    {pI.typ_name} 
+                                    <button 
+                                        type='button' 
+                                        onClick={() => mDeleteTypes(pI.typ_id)}>X</button>
+                                </li>)
+                        })
+                    }
+                </ol>
+
+
+            <Image 
+                pState = {oImage}
+                pSetState = {setOImage}
         
-        <GroupInput 
-            pType = "number"
-            pLabel= "Height Points"
-            pPlaceHolder = "Enter Height Points 1 - 100"
-            pClassName= "pok_height"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
+            />
+            </div>
 
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
-
-
-        <GroupInput 
-            pType = "number"
-            pLabel= "Weight Points"
-            pPlaceHolder = "Enter Weight Points 1 - 100"
-            pClassName= "pok_weight"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
-
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
-
-
-        <GroupInput 
-            pType = "number"
-            pLabel= "Defense Points"
-            pPlaceHolder = "Enter Defense Points 1 - 100"
-            pClassName= "pok_defense"
-            pOValues= {crntOValues}
-            pOSetOvalues= {setOvalues}
-
-            pErrorLegend = "Only numbers (1-100) are accepted"
-            pRegExp = {/^([1-9][0-9]?|100)$/m}
-            pOValidation ={oValidation}
-            pOSetOValidation ={setOValidation}
-            pMax = "100"
-            pMin = "1"
-        />
-        
-        <SelectGroup
-            pName = 'aIdTypes'
-            pLabel = 'Type of Pokemon'
-            pAOptions = {rdcr_aTypes}
-            pAState = {crntOValues}
-            pASetState = {setOvalues}
-        />
-
-        <ol>
-            {
-                crntOValues.aIdTypes.map((pI,index) => {
-                    return( 
-                        <li key={index}>
-                            {pI.typ_name} 
-                            <button 
-                                type='button' 
-                                onClick={() => mDeleteTypes(pI.typ_id)}>X</button>
-                        </li>)
-                })
-            }
-        </ol>
-
-
-      <Image 
-        pState = {oImage}
-        pSetState = {setOImage}
- 
-      />
-
-      <button type='submit'>Create</button>
+        <button className='btn-submit' type='submit'>Create</button>
+      </section>
 
     </form>
   )

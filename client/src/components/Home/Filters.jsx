@@ -64,35 +64,36 @@ const Filters = () => {
         <option value="OP_DB">Show By DB</option>
         <option value="OP_API">Show By Api</option>
       </select>
+      <div className='filter-alph-attck'>
+        <select
+          onChange={mOrder}
+          >
+          <option value="ORD_NULL">Filter By</option>
+          <option value="ORD_ALPH">Alphabet</option>
+          <option value="ORD_ATCK">Attack</option>
+        </select>
+        
+        <div>
+          <label htmlFor="iasc">ASC</label>
+          <input
+            name='order'
+            type="radio"
+            id='iasc'
+            value="ORD_ASC"
+            onClick={mAscOrDesc}
+            />
+        </div>
 
-      <select
-        onChange={mOrder}
-        >
-        <option value="ORD_NULL">Filter By</option>
-        <option value="ORD_ALPH">Alphabet</option>
-        <option value="ORD_ATCK">Attack</option>
-      </select>
-      
-      <div>
-        <label htmlFor="iasc">ASC</label>
-        <input
-          name='order'
-          type="radio"
-          id='iasc'
-          value="ORD_ASC"
-          onClick={mAscOrDesc}
-          />
-      </div>
-
-      <div>
-        <label htmlFor="idsc">DSC</label>
-        <input
-          name='order'
-          type="radio"
-          id='idsc'
-          value="ORD_DSC"
-          onClick={mAscOrDesc}
-          />
+        <div>
+          <label htmlFor="idsc">DSC</label>
+          <input
+            name='order'
+            type="radio"
+            id='idsc'
+            value="ORD_DSC"
+            onClick={mAscOrDesc}
+            />
+        </div>
       </div>
       
     </MyDiv>
@@ -104,4 +105,33 @@ export default Filters
 
 const MyDiv = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  h3{
+    font-size: 1.5rem;
+    font-style: oblique;
+  }
+  select{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: aliceblue;
+    font-weight: bold;
+    option{
+      color: aliceblue;
+      background-color: black;
+    }
+    ::-webkit-scrollbar-thumb{  
+      border-radius: 10px;
+      background-color: rgba(0, 217, 255, 0.443);
+    }
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.83);
+    }
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+  }
 `

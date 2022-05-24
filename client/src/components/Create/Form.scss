@@ -1,0 +1,106 @@
+.component-form{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .cForm-content{
+        
+        padding: 40px;
+        border-radius: 40px;
+        border: 3px solid white;
+        min-height: 60vh;
+        .btn-submit{
+            border-radius: 40px;
+            border: 3px solid white;
+            padding: 4px;
+            width: 100%;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            font-weight: bold;
+            &:hover{
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+    .fSection-One{
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        label{
+            color: white;
+            font-size: 1.9rem;
+            font-weight: bold;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #000;
+        }
+        input{
+            border-radius: 40px;
+            border: 3px solid white;
+            padding: 4px;
+            margin-bottom: 7px;
+            width: 100%;
+            font-size: 1.2em;
+            &:focus{
+                outline: none;
+            }
+        }
+        
+        select{
+            border-radius: 40px;
+            border: 3px solid white;
+            padding: 4px;
+            margin-bottom: 7px;
+            width: 100%;
+            font-size: 1.2em;
+        }
+        .component-image{ 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            figure {
+                width: 160px;
+                height: 160px;
+                overflow: hidden;
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                margin: 9px 0;
+                img{
+                  height: 100%;
+                  filter: drop-shadow(0 3px 19px rgba(0, 0, 0, 0.7));
+                }
+              }
+        }
+        .sOne-list_types{
+            li{
+                font-size: 1.2rem;
+                font-weight: bold;
+                list-style: none;
+                text-align: start;
+                width: 100px;
+                display: flex;
+                justify-content: space-between;
+                button{
+                    border-radius: 40px;
+                    border: 3px solid white;
+                    padding: 2px;
+                    margin: 0 7px;
+                    font-size: 1.2em;
+                    cursor: pointer;
+                    background-color: transparent;
+                    color: white;
+                    font-weight: bold;
+                    &:hover{
+                        background-color: white;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}

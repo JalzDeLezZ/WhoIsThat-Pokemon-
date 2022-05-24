@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Styles from './styles/LandingPage.module.scss'
+import  './styles/LandingPage.scss'
 const LandingPage = () => {
 
   const xNagigate = useNavigate()
@@ -16,14 +16,14 @@ const LandingPage = () => {
   }
 
   return (
-    <div className={Styles.landingPAge}>
-        <h1>WELCOME TO MY LANDING PAGE</h1>
+    <div className='landingPAge'>
         <button
+          className='btn_primary'
           onClick={mRedirect}
-        > HOME</button>
+        />
         {
           bLoading ? <h1>Loading...</h1> : null
-        }
+        } 
     </div>
   )
 }

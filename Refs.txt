@@ -1,0 +1,39 @@
+>>> IMAGES UPLOAD WITH AWS s3
+
+0: NodeJs How to upload Files + uploading to AWS S3 using Express, Multer
+https://youtu.be/jwp4U6v-3h4 > the first video
+
+1: Upload Images to S3 from Node Back End
+https://youtu.be/NZElg91l_ms > help
+
+2: CRUD de imágenes con React, Node js y MySQL - Parte 2 | Obteniendo y mostrando las imágenes
+https://youtu.be/kXucJlW2GNM > delete
+
+3: React Image Upload Made Easy
+https://youtu.be/XeiOnkEI7XI > loading
+
+
+_____________________________________________
+
+complements
+_____________________________________________
+
+A: Upload Images Directly to S3 from Front End
+https://youtu.be/yGYeYJpRWPM
+
+B: File Uploads with React, Node, and AWS S3
+https://youtu.be/scUKcl36ZQs
+
+// review these videos not is very important ←↓↓↓→
+d: React x AWS | How to Upload to AWS S3 Using Pre-signed URLs
+https://youtu.be/_khupEk42zs
+
+e: Ep8 - React Node Amazon S3 Upload: Create File sharing web app with Express & ReactJs from Scratch
+https://youtu.be/4dkbpnruaRU
+
+
+f: AWS S3: Como subir archivos a S3 usando NodeJS y Javascript
+https://youtu.be/XKJFxkh3hqo
+
+g: Multiple File Uploads on Amazon Web Services | S3 Bucket | Node Js | React Js | AWS
+https://youtu.be/eLkVQI2xBD0

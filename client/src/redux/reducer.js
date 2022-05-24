@@ -30,6 +30,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 rdcr_aAllPokemons: payload,
                 rdcr_aCustomPokemons: payload,
+                rdcr_bLoading: true
             };
         
         case GET_ALL_TYPES:

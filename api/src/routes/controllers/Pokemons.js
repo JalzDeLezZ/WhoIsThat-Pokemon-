@@ -68,6 +68,8 @@ const ApiDataByIdOrName = async (pIdOrName) => {
                 const {base_stat: base, stat} = pI;
                 return {stat: stat.name, base};
             }),
+            pok_weight: data.weight,
+            pok_height: data.height,
         };
         return oCleanApi;
 

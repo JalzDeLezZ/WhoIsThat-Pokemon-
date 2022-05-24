@@ -43,7 +43,7 @@ const ContentCards = () => {
 
 
   return (
-    <section >
+    <section>
 
       {
         rdcr_bLoading ? 
@@ -91,19 +91,27 @@ const ContentCards = () => {
 export default ContentCards
 
 const MyOl = styled.ol`
-  display: flex;
+  display: inline-flex;
   flex-flow: row wrap;
   list-style: none;
+  justify-content: center;
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 30px;
+  align-items: center;
   justify-content: center;
   li{
     margin: 3px 6px;
     cursor: pointer;
+    font-weight: bolder;
+    font-size: 1.6rem;
+    height: 30px;
+    width: 30px;
     &.active{
       color: #fff;
-      background-color: #413737;
-      border-radius: 10px;
+      background-color: black;
+      border-radius: 50%;
       padding: 5px;
-      font-size: 1.2rem;
       font-weight: bold;
     }
   }
